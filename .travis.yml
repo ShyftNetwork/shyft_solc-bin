@@ -16,4 +16,5 @@ script: CXX=g++-4.8 npm run lint && npm run test
 
 after_success:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+  - chmod a+x ./scripts/solc-js-publish.sh
   - ./scripts/solc-js-publish.sh
