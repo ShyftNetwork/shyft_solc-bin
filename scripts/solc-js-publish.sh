@@ -4,7 +4,7 @@ set -e
 
 # Check if version is new release
 SOLC_JS_VERSION=`npm view @shyftnetwork/shyft_solc version`
-SOLC_VERSION=`node -e "console.log(require(`$TRAVIS_BUILD_DIR/bin/list.json`).latestRelease);"`
+SOLC_VERSION=`node -e "console.log(require('$TRAVIS_BUILD_DIR/bin/list.json').latestRelease);"`
 if [ $SOLC_JS_VERSION == $SOLC_VERSION ]
 then
     exit 0
