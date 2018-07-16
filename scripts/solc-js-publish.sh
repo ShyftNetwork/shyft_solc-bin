@@ -2,6 +2,9 @@
 
 set -e
 
+ls -la
+echo "Current directory: `pwd`"
+
 # Check if version is new release
 SOLC_JS_VERSION=`npm view @shyftnetwork/shyft_solc version`
 SOLC_VERSION=`node -e "console.log(require('$TRAVIS_BUILD_DIR/bin/list.json').latestRelease);"`
@@ -11,10 +14,10 @@ then
 fi
 echo 'Found new version of solc'
 # Add git ssh key
-openssl aes-256-cbc -K $encrypted_c6ed341a5849_key -iv $encrypted_c6ed341a5849_iv -in shyft_deploy_key.enc -out shyft_deploy_key -d
-chmod 600 shyft_deploy_key
+openssl aes-256-cbc -K $encrypted_c6ed341a5849_key -iv $encrypted_c6ed341a5849_iv -in $TRAVIS_BUILD_DIR/scripts/shyft_deploy_key.enc -out $TRAVIS_BUILD_DIR/scripts/shyft_deploy_key -d
+chmod 600 $TRAVIS_BUILD_DIR/scripts/shyft_deploy_key
 eval `ssh-agent -s`
-ssh-add shyft_deploy_key
+ssh-add $TRAVIS_BUILD_DIR/scripts/shyft_deploy_key
 echo 'SSH Kkey added'
 # Clone solc-js
 git clone --depth 2 git@github.com:shyftnetwork/shyft_solc-js.git
