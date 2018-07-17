@@ -30,9 +30,11 @@ git clean -f -d -x
 npm version patch
 NEWVERSION=`node -e "console.log(require('./package.json').version);"`
 
-echo 'New version is $NEWVERSION'
+echo "New Version:"
+echo $NEWVERSION
 
 # Call npm publish, prepublish will fetch latest version
+npm install
 npm publish --access=public
 
 echo 'Publish successful'
