@@ -13,13 +13,11 @@ then
     exit 0
 fi
 echo 'Found new version of solc'
-echo $encrypted_c6ed341a5849_key
-echo $encrypted_c6ed341a5849_iv
 # Add git ssh key
-openssl aes-256-cbc -K $encrypted_c6ed341a5849_key -iv $encrypted_c6ed341a5849_iv -in shyft_deploy_key.enc -out shyft_deploy_key -d
-chmod 600 shyft_deploy_key
+openssl aes-256-cbc -K $encrypted_49fcf53304b8_key -iv $encrypted_49fcf53304b8_iv -in shyft_deploy_key.enc -out scripts/shyft_deploy_key -d
+chmod 600 scripts/shyft_deploy_key
 eval `ssh-agent -s`
-ssh-add shyft_deploy_key
+ssh-add scripts/shyft_deploy_key
 echo 'SSH key added'
 # Clone solc-js
 git clone --depth 2 git@github.com:shyftnetwork/shyft_solc-js.git
