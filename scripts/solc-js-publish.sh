@@ -14,7 +14,7 @@ then
 fi
 echo 'Found new version of solc'
 # Add git ssh key
-openssl aes-256-cbc -K $encrypted_49fcf53304b8_key -iv $encrypted_49fcf53304b8_iv -in shyft_deploy_key.enc -out scripts/shyft_deploy_key -d
+openssl aes-256-cbc -K $encrypted_49fcf53304b8_key -iv $encrypted_49fcf53304b8_iv -in scripts/shyft_deploy_key.enc -out scripts/shyft_deploy_key -d
 chmod 600 scripts/shyft_deploy_key
 eval `ssh-agent -s`
 ssh-add scripts/shyft_deploy_key
